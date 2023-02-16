@@ -4,44 +4,77 @@
              x:Class="GridLayoutBug.MainPage">
 
     <ScrollView>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <VerticalStackLayout
-                Spacing="25"
-                Padding="30,0"
-                VerticalOptions="Center">
-                <Label
-                    Text="Welcome to .NET Multi-platform App UI"
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Button x:Name="btnCase1" Text="Case 1" Clicked="btnCase1_Clicked"></Button>
+                <Button x:Name="btnCase2" Text="Case 2" Clicked="btnCase2_Clicked"></Button>
+            </HorizontalStackLayout>
+            <Grid x:Name="gridBugCase1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <VerticalStackLayout
+                    Spacing="25"
+                    Padding="30,0"
+                    VerticalOptions="Center">
+                    <Label
+                        Text="0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111"
+                        FontSize="32"
+                        HorizontalOptions="Center" />
+                </VerticalStackLayout>
+                <Image Grid.Column="1"
+                    Source="dotnet_bot.png"
+                    HeightRequest="200"
+                    HorizontalOptions="Center" />
+                <Label Grid.Row="1"
+                    Text="Bottom Label"
                     FontSize="18"
                     HorizontalOptions="Center" />
-                <Label
-                    Text="0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111"
-                    FontSize="32"
+                <Image Grid.Row="2"
+                    Source="dotnet_bot.png"
+                    HeightRequest="100"
                     HorizontalOptions="Center" />
-
-
-            </VerticalStackLayout>
-            <Image Grid.Column="1"
-                Source="dotnet_bot.png"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-            <Label Grid.Row="1"
-                Text="Bottom Label"
-                FontSize="18"
-                HorizontalOptions="Center" />
-            <Image Grid.Row="2"
-                Source="dotnet_bot.png"
-                HeightRequest="100"
-                HorizontalOptions="Center" />
-        </Grid>
+            </Grid>
+            <Grid x:Name="gridBugCase2" IsVisible="false">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <VerticalStackLayout
+                    Grid.ColumnSpan="2"
+                    Spacing="25"
+                    Padding="30,0"
+                    VerticalOptions="Center">
+                    <Label
+                        Text="0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111"
+                        FontSize="32"
+                        HorizontalOptions="Center" />
+                </VerticalStackLayout>
+                <Image Grid.Column="1" Grid.Row="1"
+                    Source="dotnet_bot.png"
+                    HeightRequest="120"
+                    HorizontalOptions="Center" />
+                <Label Grid.Row="1"
+                    Text="Bottom Label"
+                    FontSize="18"
+                    HorizontalOptions="Center" />
+                <Image Grid.Row="2"
+                    Source="dotnet_bot.png"
+                    HeightRequest="100"
+                    HorizontalOptions="Center" />
+            </Grid>
+        </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>
