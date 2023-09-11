@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CollectionViewBindingBug.MainPage"
+             xmlns:views="clr-namespace:CollectionViewBindingBug.Views">
+
+    <CollectionView ItemsSource="{Binding Items}" Background="Black">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <ContentView>
+                    <views:SampleRow RowData="{Binding .}"/>
+                </ContentView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>
