@@ -16,6 +16,7 @@ namespace CollectionViewBindingBug.Views
 
         public SampleRow()
         {
+            BackgroundColor = Colors.DarkBlue;
         }
 
         public Item RowData
@@ -42,17 +43,13 @@ namespace CollectionViewBindingBug.Views
 
         protected override View CreateCellView(int index)
         {
-            var stack = new HorizontalStackLayout
-            {
-                BackgroundColor = Colors.DarkBlue,
-            };
-            stack.Children.Add(new Label
+            var label = new Label
             {
                 Text = RowData?.ItemText,
                 TextColor = Colors.AliceBlue,
-                Margin = new Thickness(4, 2)
-            });
-            return stack;
+                Margin = new Thickness(4, 2),
+            };
+            return label;
         }
     }
 }

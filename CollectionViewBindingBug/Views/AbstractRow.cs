@@ -8,7 +8,7 @@ namespace CollectionViewBindingBug.Views
 {
     public abstract class AbstractRow : Grid
     {
-        private int cellCount;
+        private bool isUpdated;
 
         public AbstractRow()
         {
@@ -19,16 +19,16 @@ namespace CollectionViewBindingBug.Views
         {
             ColumnDefinitions.Clear();
             RowDefinitions.Clear();
-            if (cellCount != CellCount)
+            if (!isUpdated)
             {
-                cellCount = CellCount;
+                isUpdated = true;
                 Children.Clear();
                 AddHorizontalLine(0);
                 var cellView = CreateCellView(0);
                 Grid.SetRow(cellView, 1);
                 Children.Add(cellView);
             }
-            FillRowDefinitions(CellCount);
+            FillRowDefinitions();
         }
 
         private void AddHorizontalLine(int rowIndex)
@@ -43,17 +43,13 @@ namespace CollectionViewBindingBug.Views
             Children.Add(topLine);
         }
 
-        private void FillRowDefinitions(int count)
+        private void FillRowDefinitions()
         {
             RowDefinitions.Add(new RowDefinition(GridLength.Auto));
             RowDefinitions.Add(new RowDefinition(GridLength.Star));
-            for (int i = 0; i < count; i++)
-            {
-                ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
-            }
+            ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
         }
 
-        protected virtual int CellCount { get; } = 1;
         protected abstract View CreateCellView(int index);
 
     }
