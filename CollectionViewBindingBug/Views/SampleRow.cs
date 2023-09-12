@@ -49,7 +49,14 @@ namespace CollectionViewBindingBug.Views
                 TextColor = Colors.AliceBlue,
                 Margin = new Thickness(4, 2),
             };
-            return label;
+            // When the result view is more complex then the CollectionView changes the item order more often.
+            return new HorizontalStackLayout
+            {
+                Children =
+                {
+                    label,
+                }
+            };
         }
     }
 }
