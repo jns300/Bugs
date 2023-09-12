@@ -17,18 +17,18 @@ namespace CollectionViewBindingBug.Views
 
         protected void PerformUpdate()
         {
-            ColumnDefinitions.Clear();
-            RowDefinitions.Clear();
             if (!isUpdated)
             {
                 isUpdated = true;
+                ColumnDefinitions.Clear();
+                RowDefinitions.Clear();
                 Children.Clear();
                 AddHorizontalLine(0);
                 var cellView = CreateCellView(0);
                 Grid.SetRow(cellView, 1);
                 Children.Add(cellView);
+                FillRowDefinitions();
             }
-            FillRowDefinitions();
         }
 
         private void AddHorizontalLine(int rowIndex)
