@@ -114,7 +114,26 @@ namespace SwipeActivationIssue.Custom
             if (items == null || items?.Count == 0)
                 return false;
 
+            // [jns300] Check whether the swipe can be started.
+            if (!CheckActivationThreshold(interceptPoint, swipeDirection))
+                return false;
+
             return ShouldInterceptScrollChildrenTouch(swipeDirection);
+        }
+
+        /// <summary>
+        /// [jns300] Checks whether the gap between the initial point and the point from the argument 
+        /// is sufficient to start the swipe.
+        /// </summary>
+        /// <param name="point">the point to examine</param>
+        /// <param name="direction">the detected swipe direction</param>
+        /// <returns>whether the swipe can be started</returns>
+        private bool CheckActivationThreshold(APointF point, SwipeDirection? direction)
+        {
+            double swipeActivationThreshold = (Element as CustomSwipeView)?.ActivationThreshold ?? 0d;
+            if (swipeActivationThreshold <= 0d) return true;
+            return (direction == SwipeDirection.Left || direction == SwipeDirection.Right) && Math.Abs(_initialPoint.X - point.X) >= swipeActivationThreshold
+                || (direction == SwipeDirection.Up || direction == SwipeDirection.Down) && Math.Abs(_initialPoint.Y - point.Y) >= swipeActivationThreshold;
         }
 
         bool ShouldInterceptScrollChildrenTouch(SwipeDirection swipeDirection)
@@ -397,10 +416,6 @@ namespace SwipeActivationIssue.Custom
 
                 _swipeDirection = SwipeDirectionHelper.GetSwipeDirection(new Point(_initialPoint.X, _initialPoint.Y), new Point(point.X, point.Y));
 
-                // [jns300] Check whether the swipe can be started.
-                if (!CheckActivationThreshold(point, _swipeDirection))
-                    return false;
-
                 UpdateSwipeItems();
             }
 
@@ -425,21 +440,6 @@ namespace SwipeActivationIssue.Custom
             RaiseSwipeChanging();
 
             return true;
-        }
-
-        /// <summary>
-        /// [jns300] Checks whether the gap between the initial point and the point from the argument 
-        /// is sufficient to start the swipe.
-        /// </summary>
-        /// <param name="point">the point to examine</param>
-        /// <param name="direction">the detected swipe direction</param>
-        /// <returns>whether the swipe can be started</returns>
-        private bool CheckActivationThreshold(APointF point, SwipeDirection? direction)
-        {
-            double swipeActivationThreshold = (Element as CustomSwipeView)?.ActivationThreshold ?? 0d;
-            if (swipeActivationThreshold <= 0d) return true;
-            return (direction == SwipeDirection.Left || direction == SwipeDirection.Right) && Math.Abs(_initialPoint.X - point.X) >= swipeActivationThreshold
-                || (direction == SwipeDirection.Up || direction == SwipeDirection.Down) && Math.Abs(_initialPoint.Y - point.Y) >= swipeActivationThreshold;
         }
 
         bool ProcessTouchUp()
