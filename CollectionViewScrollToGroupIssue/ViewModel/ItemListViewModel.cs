@@ -14,8 +14,6 @@ namespace CollectionViewScrollToGroupIssue.ViewModel
 
         private ObservableCollection<IItemViewModel> items = new();
 
-        private string errorMessage;
-
         public ItemListViewModel()
         {
             Populate();
@@ -23,17 +21,9 @@ namespace CollectionViewScrollToGroupIssue.ViewModel
 
         private void Populate()
         {
-            try
+            for (int i = 0; i < 100; i++)
             {
-                ErrorMessage = String.Empty;
-                for (int i = 0; i < 100; i++)
-                {
-                    items.Add(GetGroup(i, 3));
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Model creation error: {ex}";
+                items.Add(GetGroup(i, 3));
             }
         }
         private IItemViewModel GetGroup(int groupIndex, int itemCount)
@@ -47,15 +37,5 @@ namespace CollectionViewScrollToGroupIssue.ViewModel
         }
 
         public ObservableCollection<IItemViewModel> Items => items;
-        public string ErrorMessage
-        {
-            get => errorMessage;
-            set
-            {
-                errorMessage = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ErrorMessage)));
-            }
-        }
-
     }
 }

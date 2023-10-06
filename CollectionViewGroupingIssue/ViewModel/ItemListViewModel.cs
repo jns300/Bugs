@@ -47,7 +47,7 @@ namespace CollectionViewGroupingIssue.ViewModel
             }
             catch (Exception ex)
             {
-                ErrorMessage = $"Model creating error: {ex}";
+                ErrorMessage = $"Model creation error: {ex}";
             }
         }
 
