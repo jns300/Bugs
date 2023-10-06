@@ -14,7 +14,7 @@ namespace CollectionViewGroupingIssue.ViewModel
 
         private ObservableCollection<IItemViewModel> items = new();
 
-        private bool isGrouped;
+        private bool isGrouped = true;
 
         private string errorMessage;
 
