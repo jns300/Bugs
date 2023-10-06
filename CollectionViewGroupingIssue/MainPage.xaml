@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CollectionViewGroupingIssue.MainPage">
+
+    <Grid Background="Black" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <HorizontalStackLayout Padding="5">
+            <CheckBox IsChecked="{Binding IsGrouped, Mode=TwoWay}"></CheckBox>
+            <Label Text="Is Grouping Active" VerticalTextAlignment="Center" TextColor="LightBlue"/>
+        </HorizontalStackLayout>
+        <Label Grid.Row="1" Text="{Binding ErrorMessage}"/>
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Items}" IsGrouped="{Binding IsGrouped}">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Margin="2" FontSize="Medium" Text="{Binding ItemText}" HorizontalOptions="Fill" TextColor="LightBlue"/>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Margin="15,2" Text="{Binding ItemText}" HorizontalOptions="Fill" TextColor="Gray"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
