@@ -13,7 +13,7 @@
             Window window = base.CreateWindow(activationState);
             window.Created += (s, e) =>
             {
-                CollectionViewScrollToIssue.MainPage.Instance.RevealLastItem();
+                CollectionViewScrollToIssue.MainPage.Instance?.RevealLastItem();
             };
             return window;
         }

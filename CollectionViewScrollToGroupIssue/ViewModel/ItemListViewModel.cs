@@ -33,7 +33,7 @@ namespace CollectionViewScrollToGroupIssue.ViewModel
             }
             catch (Exception ex)
             {
-                ErrorMessage = $"Model creating error: {ex}";
+                ErrorMessage = $"Model creation error: {ex}";
             }
         }
         private IItemViewModel GetGroup(int groupIndex, int itemCount)
