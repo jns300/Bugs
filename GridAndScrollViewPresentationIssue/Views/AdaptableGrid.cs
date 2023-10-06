@@ -37,14 +37,14 @@ namespace GridAndScrollViewPresentationIssue.Views
         private void SetCellSizes()
         {
             double newButtonSize = 0d;
-            ForEachButton(this, btn =>
+            ForEachItem(this, btn =>
             {
                 var size = GetDesiredSize(btn);
                 newButtonSize = Math.Max(newButtonSize, Math.Max(size.Width, size.Height));
             });
             if (newButtonSize > 0)
             {
-                ForEachButton(this, btn =>
+                ForEachItem(this, btn =>
                 {
                     btn.WidthRequest = newButtonSize;
                 });
@@ -66,7 +66,7 @@ namespace GridAndScrollViewPresentationIssue.Views
             UpdateGridLength(this, newSize);
         }
 
-        private void ForEachButton(Layout layout, Action<ContentViewItem> buttonAction)
+        private void ForEachItem(Layout layout, Action<ContentViewItem> buttonAction)
         {
             foreach (var child in layout.Children)
             {
@@ -76,7 +76,7 @@ namespace GridAndScrollViewPresentationIssue.Views
                 }
                 else if (child is Layout childLayout)
                 {
-                    ForEachButton(childLayout, buttonAction);
+                    ForEachItem(childLayout, buttonAction);
                 }
             }
 

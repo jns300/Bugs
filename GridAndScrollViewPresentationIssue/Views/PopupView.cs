@@ -31,9 +31,6 @@ namespace GridAndScrollViewPresentationIssue.Views
         }
         private void Populate()
         {
-            itemGrid.Children.Clear();
-            itemGrid.RowDefinitions.Clear();
-            itemGrid.ColumnDefinitions.Clear();
             itemGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
             itemGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Auto));
 

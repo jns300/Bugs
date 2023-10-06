@@ -11,8 +11,6 @@ namespace GridResizeIssue.Views
 
         private Frame mainFrame;
 
-        private bool useScroll = true;
-
         public PopupView()
         {
             BackgroundColor = Colors.Black;
