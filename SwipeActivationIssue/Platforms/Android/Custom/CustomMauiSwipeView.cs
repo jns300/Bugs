@@ -131,7 +131,7 @@ namespace SwipeActivationIssue.Custom
         private bool CheckActivationThreshold(APointF point, SwipeDirection? direction)
         {
             double swipeActivationThreshold = (Element as CustomSwipeView)?.ActivationThreshold ?? 0d;
-            if (swipeActivationThreshold <= 0d) return true;
+            if (swipeActivationThreshold <= 0d || _initialPoint == null) return true;
             return (direction == SwipeDirection.Left || direction == SwipeDirection.Right) && Math.Abs(_initialPoint.X - point.X) >= swipeActivationThreshold
                 || (direction == SwipeDirection.Up || direction == SwipeDirection.Down) && Math.Abs(_initialPoint.Y - point.Y) >= swipeActivationThreshold;
         }
@@ -1450,6 +1450,5 @@ namespace SwipeActivationIssue.Custom
 
             Element?.SwipeEnded(new SwipeViewSwipeEnded(_swipeDirection.Value, isOpen));
         }
-        public ISwipeView? CrossPlatformLayout { get; set; }
     }
 }
